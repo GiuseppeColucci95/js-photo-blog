@@ -1,0 +1,75 @@
+/* #region common */
+
+:root {
+  --main-example-first-color: #92c952;
+  --main-example-second-color: #771796;
+  --main-example-third-color: #24f355;
+  --main-example-fourth-color: #d32776;
+  --main-example-fifth-color: #f66b97;
+  --main-example-sixth-color: #56a8c2;
+  --main-dates-color: #929393;
+  --main-shadows-color: rgb(74, 73, 73);
+  --main-lighter-color: white;
+  --main-darker-color: black;
+
+  --header-height: 150px;
+  --font-titles: "Edu TAS Beginner", cursive;
+  --font-dates: "Sometype Mono", monospace;
+}
+
+body {
+  font-family: var(--font-titles);
+}
+
+/* #endregion common */
+
+/* #region header */
+
+header {
+  height: var(--header-height);
+  background-image: url('../img/wall.png');
+
+  div {
+    height: 100%;
+    text-align: center;
+    font-weight: 800;
+    font-size: 6rem;
+  }
+}
+
+/* #endregion header */
+
+/* #region main */
+
+main {
+  background-image: url('../img/cork.png');
+
+  .image_card {
+    background-color: var(--main-lighter-color);
+    padding: 1.25rem;
+    position: relative;
+    box-shadow: 1px 1px 5px 0px var(--main-shadows-color);
+
+    #img_pin {
+      position: absolute;
+      top: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #img_date {
+      font-family: var(--font-dates);
+      color: var(--main-dates-color);
+      margin-top: 1rem;
+      font-size: 1.25rem;
+    }
+
+    #img_title {
+      color: var(--main-darker-color);
+      font-weight: 700;
+      font-size: 2rem;
+    }
+  }
+}
+
+/* #endregion main */
