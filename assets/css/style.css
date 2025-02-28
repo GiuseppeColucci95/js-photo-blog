@@ -8,6 +8,7 @@
   --main-example-fifth-color: #f66b97;
   --main-example-sixth-color: #56a8c2;
   --main-dates-color: #929393;
+  --main-shadows-color: rgb(74, 73, 73);
   --main-lighter-color: white;
   --main-darker-color: black;
 
@@ -46,6 +47,15 @@ main {
   .image_card {
     background-color: var(--main-lighter-color);
     padding: 1.25rem;
+    position: relative;
+    box-shadow: 1px 1px 5px 0px var(--main-shadows-color);
+
+    #img_pin {
+      position: absolute;
+      top: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
     #img_date {
       font-family: var(--font-dates);
