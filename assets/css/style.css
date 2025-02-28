@@ -6,5 +6,21 @@
   --main-example-fifth-color: #f66b97;
   --main-example-sixth-color: #56a8c2;
 
-  --header-height: 148px;
+  --header-height: 150px;
+  --font-titles: "Edu TAS Beginner", cursive;
+  --font-dates: "Sometype Mono", monospace;
+}
+
+body {
+  font-family: var(--font-titles);
+
+  header {
+    height: var(--header-height);
+    background-image: url('../img/wall.png');
+
+    h1 {
+      font-weight: 700;
+      font-size: 5rem;
+    }
+  }
 }
