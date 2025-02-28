@@ -1,3 +1,5 @@
+/* #region common */
+
 :root {
   --main-example-first-color: #92c952;
   --main-example-second-color: #771796;
@@ -5,6 +7,9 @@
   --main-example-fourth-color: #d32776;
   --main-example-fifth-color: #f66b97;
   --main-example-sixth-color: #56a8c2;
+  --main-dates-color: #929393;
+  --main-lighter-color: white;
+  --main-darker-color: black;
 
   --header-height: 150px;
   --font-titles: "Edu TAS Beginner", cursive;
@@ -13,14 +18,46 @@
 
 body {
   font-family: var(--font-titles);
+}
 
-  header {
-    height: var(--header-height);
-    background-image: url('../img/wall.png');
+/* #endregion common */
 
-    h1 {
+/* #region header */
+
+header {
+  height: var(--header-height);
+  background-image: url('../img/wall.png');
+
+  h1 {
+    font-weight: 800;
+    font-size: 6rem;
+  }
+}
+
+/* #endregion header */
+
+/* #region main */
+
+main {
+  background-image: url('../img/cork.png');
+
+  .image_card {
+    background-color: var(--main-lighter-color);
+    padding: 1.25rem;
+
+    #img_date {
+      font-family: var(--font-dates);
+      color: var(--main-dates-color);
+      margin-top: 1rem;
+      font-size: 1.25rem;
+    }
+
+    #img_place {
+      color: var(--main-darker-color);
       font-weight: 700;
-      font-size: 5rem;
+      font-size: 2rem;
     }
   }
 }
+
+/* #endregion main */
