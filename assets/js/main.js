@@ -5,7 +5,7 @@ console.log(rowEl);
 //create variable for api url to use it in ajax call
 const urlEndpoint = "https://lanciweb.github.io/demo/api/pictures/";
 
-//call init function
+//start with init function
 init();
 
 
