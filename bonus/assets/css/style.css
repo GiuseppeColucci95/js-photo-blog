@@ -30,6 +30,7 @@ header {
   background-image: url('../img/wall.png');
 
   div {
+    text-align: center;
     font-weight: 800;
     font-size: 6rem;
 
