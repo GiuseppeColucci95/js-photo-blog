@@ -1,12 +1,14 @@
 //create variables to get DOM elements
 const rowEl = document.getElementById('grid_row');
-console.log(rowEl);
+const closeModalBtnEl = document.getElementById('close_modal');
+console.log(rowEl, closeModalBtnEl);
 
 //create variable for api url to use it in ajax call
 const urlEndpoint = "https://lanciweb.github.io/demo/api/pictures/";
 
 //start with init function
 init();
+
 
 
 
@@ -65,4 +67,8 @@ function init() {
     .then(data => displayElements(data))
     //cacth some error eventually
     .catch(error => console.error(error));
+
+  const cardsEl = document.querySelectorAll('#grid_row .col');
+  console.log(cardsEl);
+
 }

@@ -47,6 +47,7 @@ header {
 
 main {
   background-image: url('../img/cork.png');
+  min-height: calc(100vh - var(--header-height));
 
   .image_card {
     background-color: var(--main-lighter-color);
