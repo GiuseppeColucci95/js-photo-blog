@@ -24,9 +24,9 @@ function getMarkup(element) {
   const markup = `
     <div class="col">
       <div class="image_card">
+      <img id="img_photo" class="img-fluid" src="${element.url}"
+        alt="${element.id} image">
         <img id="img_pin" src="./assets/img/pin.svg" alt="image pin">
-        <img id="img_photo" class="img-fluid" src="${element.url}"
-          alt="${element.id} image">
         <div id="img_date">${element.date}</div>
         <div id="img_title">${element.title.toUpperCase()}</div>
       </div>
@@ -68,17 +68,31 @@ function init() {
       displayElements(data);
 
       //add event listener to each card
-      const cardsEl = document.querySelectorAll('#grid_row .col');
+      const cardsEl = document.querySelectorAll('#grid_row > .col > .image_card');
       const modalEl = document.getElementById('modal');
+      const modalImgEl = document.querySelector('#modal img');
       console.log(cardsEl, modalEl);
 
+      //forEach cicle to cicle on each generated card
       cardsEl.forEach((card) => {
+        //add event listener to each card
         card.addEventListener('click', function () {
+
+          //get the src and the alt of each card
+          const imgPhoto = card.querySelector('img');
+          const imgPhotoSrc = imgPhoto.src;
+          const imgPhotoAlt = imgPhoto.alt;
+
+          //remove d-none class to modal and set his src and alt attributes
           modalEl.classList.remove('d-none');
+          modalImgEl.src = imgPhotoSrc;
+          modalImgEl.alt = imgPhotoAlt;
         })
       });
 
+      //add event listener to modal close button
       closeModalBtnEl.addEventListener('click', function () {
+        //add class d-none to modal to remove it from the viewport
         modalEl.classList.add('d-none');
       });
     })
