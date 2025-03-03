@@ -69,10 +69,19 @@ function init() {
 
       //add event listener to each card
       const cardsEl = document.querySelectorAll('#grid_row .col');
-      console.log(cardsEl);
+      const modalEl = document.getElementById('modal');
+      console.log(cardsEl, modalEl);
+
+      cardsEl.forEach((card) => {
+        card.addEventListener('click', function () {
+          modalEl.classList.remove('d-none');
+        })
+      });
+
+      closeModalBtnEl.addEventListener('click', function () {
+        modalEl.classList.add('d-none');
+      });
     })
     //cacth some error eventually
     .catch(error => console.error(error));
-
-
 }
