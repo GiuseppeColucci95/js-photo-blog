@@ -110,11 +110,14 @@ function init() {
           card.style.cursor = 'pointer';
 
           card.style.transform = 'scale(1.1)';
-          card.style.transform = 'rotate(10deg)';
+          card.style.transform += 'rotate(10deg)';
+          card.style.transition = '300ms';
+          card.style.zIndex++;
         });
 
         card.addEventListener('mouseout', function () {
           card.style.transform = 'scale(1)';
+          card.style.zIndex--;
         });
       });
     })
