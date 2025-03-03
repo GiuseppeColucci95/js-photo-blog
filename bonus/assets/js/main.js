@@ -92,6 +92,9 @@ function transformCard(card) {
   card.style.transform += 'rotate(10deg)';
   card.style.transition = '300ms';
 
+  //increment card box shadow
+  card.style.boxShadow = '1px 1px 20px 5px var(--main-shadows-color)';
+
   //increment card z-index
   card.style.zIndex++;
 }
@@ -105,6 +108,9 @@ function defaultCard(card) {
 
   //set card style to default
   card.style.transform = 'scale(1)';
+
+  //reset card shadow
+  card.style.boxShadow = '1px 1px 5px 0px var(--main-shadows-color)';
 
   //decrement card z-index
   card.style.zIndex--;
