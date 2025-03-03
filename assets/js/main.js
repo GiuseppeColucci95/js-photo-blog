@@ -64,11 +64,15 @@ function init() {
     //get response data and transform it in json object
     .then(response => response.json())
     //get json object and call display function 
-    .then(data => displayElements(data))
+    .then(data => {
+      displayElements(data);
+
+      //add event listener to each card
+      const cardsEl = document.querySelectorAll('#grid_row .col');
+      console.log(cardsEl);
+    })
     //cacth some error eventually
     .catch(error => console.error(error));
 
-  const cardsEl = document.querySelectorAll('#grid_row .col');
-  console.log(cardsEl);
 
 }
