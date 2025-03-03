@@ -44,7 +44,7 @@ function getMarkup(element) {
  * @param {Node} domEl DOM element where to add the markup
  * @returns {void} 
  */
-function displayElements(cards, domEl) {
+function displayElements(cards, domElement) {
 
   //forEach cicle to get through all the elements of the array received and transformed
   cards.forEach((element) => {
@@ -53,7 +53,7 @@ function displayElements(cards, domEl) {
     const markup = getMarkup(element);
 
     //insert markup to the page
-    domEl.insertAdjacentHTML('beforeend', markup);
+    domElement.insertAdjacentHTML('beforeend', markup);
   });
 }
 
@@ -78,7 +78,40 @@ function displayModal(card, modal, modalImg) {
 }
 
 /**
- * Init function to start fetch
+ * Scale and rotate the given card
+ * @param {Node} card
+ * @returns {void} 
+ */
+function transformCard(card) {
+
+  //set cursor point
+  card.style.cursor = 'pointer';
+
+  //set scale and fluid transition to the card
+  card.style.transform = 'scale(1.1)';
+  card.style.transform += 'rotate(10deg)';
+  card.style.transition = '300ms';
+
+  //increment card z-index
+  card.style.zIndex++;
+}
+
+/**
+ * Set the card to her default style
+ * @param {Node} card
+ * @returns {void} 
+ */
+function defaultCard(card) {
+
+  //set card style to default
+  card.style.transform = 'scale(1)';
+
+  //decrement card z-index
+  card.style.zIndex--;
+}
+
+/**
+ * Init function to start everything
  * @returns {void}
  */
 function init() {
@@ -106,18 +139,15 @@ function init() {
         });
 
         card.addEventListener('mouseover', function () {
-          console.log(card.style);
-          card.style.cursor = 'pointer';
 
-          card.style.transform = 'scale(1.1)';
-          card.style.transform += 'rotate(10deg)';
-          card.style.transition = '300ms';
-          card.style.zIndex++;
+          //scale and rotate card
+          transformCard(card);
         });
 
         card.addEventListener('mouseout', function () {
-          card.style.transform = 'scale(1)';
-          card.style.zIndex--;
+
+          //reset card style
+          defaultCard(card);
         });
       });
     })
