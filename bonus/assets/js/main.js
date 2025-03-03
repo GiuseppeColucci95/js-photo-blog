@@ -1,12 +1,16 @@
 //create variables to get DOM elements
 const rowEl = document.getElementById('grid_row');
-console.log(rowEl);
+const modalEl = document.getElementById('modal');
+const closeModalBtnEl = document.getElementById('close_modal');
+const modalImgEl = document.querySelector('#modal img');
+console.log(rowEl, closeModalBtnEl);
 
 //create variable for api url to use it in ajax call
 const urlEndpoint = "https://lanciweb.github.io/demo/api/pictures/";
 
 //start with init function
 init();
+
 
 
 
@@ -22,9 +26,9 @@ function getMarkup(element) {
   const markup = `
     <div class="col">
       <div class="image_card">
+      <img id="img_photo" class="img-fluid" src="${element.url}"
+        alt="${element.id} image">
         <img id="img_pin" src="./assets/img/pin.svg" alt="image pin">
-        <img id="img_photo" class="img-fluid" src="${element.url}"
-          alt="${element.id} image">
         <div id="img_date">${element.date}</div>
         <div id="img_title">${element.title.toUpperCase()}</div>
       </div>
@@ -37,9 +41,10 @@ function getMarkup(element) {
 /**
  * Display all the cards got
  * @param {Array} cards 
+ * @param {Node} domEl DOM element where to add the markup
  * @returns {void} 
  */
-function displayElements(cards) {
+function displayElements(cards, domEl) {
 
   //forEach cicle to get through all the elements of the array received and transformed
   cards.forEach((element) => {
@@ -48,8 +53,28 @@ function displayElements(cards) {
     const markup = getMarkup(element);
 
     //insert markup to the page
-    rowEl.insertAdjacentHTML('beforeend', markup);
+    domEl.insertAdjacentHTML('beforeend', markup);
   });
+}
+
+/**
+ * Display the modal with card attributes
+ * @param {Node} card node to show
+ * @param {Node} modal modal node where to show the photo
+ * @param {Node} modalImg modal img node
+ * @returns {void} 
+ */
+function displayModal(card, modal, modalImg) {
+
+  //get the src and the alt of each card
+  const imgPhoto = card.querySelector('img');
+  const imgPhotoSrc = imgPhoto.src;
+  const imgPhotoAlt = imgPhoto.alt;
+
+  //remove d-none class to modal and set his src and alt attributes
+  modal.classList.remove('d-none');
+  modalImg.src = imgPhotoSrc;
+  modalImg.alt = imgPhotoAlt;
 }
 
 /**
@@ -62,7 +87,44 @@ function init() {
     //get response data and transform it in json object
     .then(response => response.json())
     //get json object and call display function 
-    .then(data => displayElements(data))
+    .then(data => {
+      //display the cards in page
+      displayElements(data, rowEl);
+
+      //add event listener to each card
+      const cardsEl = document.querySelectorAll('#grid_row > .col > .image_card');
+      //const cardPhotoEl
+      console.log(cardsEl, modalEl);
+
+      //forEach cicle to cicle on each generated card
+      cardsEl.forEach((card) => {
+        //add event listener to each card
+        card.addEventListener('click', function () {
+
+          //display modal in the viewport
+          displayModal(card, modalEl, modalImgEl);
+        });
+
+        card.addEventListener('mouseover', function () {
+          console.log(card.style);
+          card.style.cursor = 'pointer';
+
+          card.style.transform = 'scale(1.1)';
+          card.style.transform = 'rotate(10deg)';
+        });
+
+        card.addEventListener('mouseout', function () {
+          card.style.transform = 'scale(1)';
+        });
+      });
+    })
     //cacth some error eventually
     .catch(error => console.error(error));
+
+  //add event listener to modal close button
+  closeModalBtnEl.addEventListener('click', function () {
+    //add class d-none to modal to remove it from the viewport
+    modalEl.classList.add('d-none');
+  });
 }
+

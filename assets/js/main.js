@@ -96,6 +96,7 @@ function init() {
         //add event listener to each card
         card.addEventListener('click', function () {
 
+          //display modal in the viewport
           displayModal(card);
         })
       });
